@@ -56,8 +56,15 @@ namespace Sockets.Plugin
         {
             return Task.Run(() =>
             {
-                _messageCanceller.Cancel();
-                _backingUdpClient.Close();
+                if(_messageCanceller != null)
+                {
+                    _messageCanceller.Cancel();
+                }
+                
+                if(_backingUdpClient != null)
+                {
+                    _backingUdpClient.Close();
+                }
             });
         }
 
